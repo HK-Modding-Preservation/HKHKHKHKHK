@@ -16,9 +16,9 @@ namespace HKHKHKHKHK.Utils
 
         public override void OnEnter()
         {
-            if (!string.IsNullOrEmpty(this.text.Value))
+            if (!string.IsNullOrEmpty(text.Value))
             {
-                Log($"FSM Log: \"{this.text.Value}\"");
+                Log($"FSM Log: \"{text.Value}\"");
             }
             Finish();
         }

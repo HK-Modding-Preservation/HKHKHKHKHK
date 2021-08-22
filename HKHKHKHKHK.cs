@@ -1,11 +1,7 @@
 ﻿using Modding;
-using SFCore;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using System.Security.Cryptography;
 using HKHKHKHKHK.MonoBehaviours;
 using UnityEngine;
 using UObject = UnityEngine.Object;
@@ -13,9 +9,9 @@ using SFCore.Generics;
 
 namespace HKHKHKHKHK
 {
-    public class HKHKHKHKHK : FullSettingsMod<HhhhhSaveSettings, HhhhhGlobalSettings>
+    public class Hkhkhkhkhk : FullSettingsMod<HhhhhSaveSettings, HhhhhGlobalSettings>
     {
-        internal static HKHKHKHKHK Instance;
+        internal static Hkhkhkhkhk Instance;
 
         public override string GetVersion() => SFCore.Utils.Util.GetVersion(Assembly.GetExecutingAssembly());
 
@@ -50,15 +46,15 @@ namespace HKHKHKHKHK
 
         private void OnAfterSavegameLoadHook(SaveGameData data)
         {
-            GameManager.instance.StartCoroutine(attachGravityHandler());
+            GameManager.instance.StartCoroutine(AttachGravityHandler());
         }
 
-        private IEnumerator attachGravityHandler()
+        private IEnumerator AttachGravityHandler()
         {
             yield return new WaitWhile(() => !HeroController.instance);
 
             GameObject knightGo = HeroController.instance.gameObject;
-            var comp = knightGo.AddComponent<VVVVVHandler>();
+            var comp = knightGo.AddComponent<VvvvvHandler>();
         }
 
         private void SaveTotGlobalSettings()
@@ -91,15 +87,15 @@ namespace HKHKHKHKHK
         {
             if (go == null) return;
 
-            UnityEngine.Object.DontDestroyOnLoad(go);
+            Object.DontDestroyOnLoad(go);
             go.SetActive(false);
         }
 
-        private static void SetInactive(UnityEngine.Object go)
+        private static void SetInactive(Object go)
         {
             if (go != null)
             {
-                UnityEngine.Object.DontDestroyOnLoad(go);
+                Object.DontDestroyOnLoad(go);
             }
         }
     }

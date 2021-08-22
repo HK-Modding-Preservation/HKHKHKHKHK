@@ -1,11 +1,5 @@
-﻿using GlobalEnums;
-using SFCore.Utils;
-using System;
-using System.Collections;
+﻿using SFCore.Utils;
 using System.Reflection;
-using UnityEngine;
-using Logger = Modding.Logger;
-using Object = System.Object;
 
 namespace HKHKHKHKHK.Utils
 {
@@ -25,7 +19,7 @@ namespace HKHKHKHKHK.Utils
         {
             int tmp = self.Get<int>(name);
             tmp += 1;
-            self.Set<int>(name, tmp);
+            self.Set(name, tmp);
             return tmp;
         }
 
@@ -33,7 +27,7 @@ namespace HKHKHKHKHK.Utils
         {
             int tmp = self.Get<int>(name);
             tmp -= 1;
-            self.Set<int>(name, tmp);
+            self.Set(name, tmp);
             return tmp;
         }
 
@@ -41,13 +35,13 @@ namespace HKHKHKHKHK.Utils
         {
             float tmp = self.Get<float>(name);
             tmp += val;
-            self.Set<float>(name, tmp);
+            self.Set(name, tmp);
         }
         public static void Sub(this HeroController self, string name, float val)
         {
             float tmp = self.Get<float>(name);
             tmp -= val;
-            self.Set<float>(name, tmp);
+            self.Set(name, tmp);
         }
 
         public static object Inv(this HeroController self, string name, object[] parameters)
