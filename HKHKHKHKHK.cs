@@ -41,20 +41,13 @@ namespace HKHKHKHKHK
         private void InitCallbacks()
         {
             // Hooks
-            ModHooks.AfterSavegameLoadHook += OnAfterSavegameLoadHook;
+            On.HeroController.Start += HeroControllerOnStart;
         }
 
-        private void OnAfterSavegameLoadHook(SaveGameData data)
+        private void HeroControllerOnStart(On.HeroController.orig_Start orig, HeroController self)
         {
-            GameManager.instance.StartCoroutine(AttachGravityHandler());
-        }
-
-        private IEnumerator AttachGravityHandler()
-        {
-            yield return new WaitWhile(() => !HeroController.instance);
-
-            GameObject knightGo = HeroController.instance.gameObject;
-            var comp = knightGo.AddComponent<VvvvvHandler>();
+            orig(self);
+            var comp = self.gameObject.AddComponent<VvvvvHandler>();
         }
 
         private void SaveTotGlobalSettings()
