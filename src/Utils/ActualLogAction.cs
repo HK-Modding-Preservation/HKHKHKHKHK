@@ -1,36 +1,35 @@
 ﻿using HutongGames.PlayMaker;
 using Logger = Modding.Logger;
 
-namespace HKHKHKHKHK.Utils
+namespace HKHKHKHKHK.Utils;
+
+internal class ActualLogAction : FsmStateAction
 {
-    internal class ActualLogAction : FsmStateAction
+    public FsmString text;
+
+    public override void Reset()
     {
-        public FsmString text;
+        text = string.Empty;
 
-        public override void Reset()
+        base.Reset();
+    }
+
+    public override void OnEnter()
+    {
+        if (!string.IsNullOrEmpty(text.Value))
         {
-            text = string.Empty;
-
-            base.Reset();
+            Log($"FSM Log: \"{text.Value}\"");
         }
+        Finish();
+    }
 
-        public override void OnEnter()
-        {
-            if (!string.IsNullOrEmpty(text.Value))
-            {
-                Log($"FSM Log: \"{text.Value}\"");
-            }
-            Finish();
-        }
+    private new void Log(string message)
+    {
+        Logger.Log($"[{GetType().FullName?.Replace(".", "]:[")}] - {message}");
+    }
 
-        private new void Log(string message)
-        {
-            Logger.Log($"[{GetType().FullName?.Replace(".", "]:[")}] - {message}");
-        }
-
-        private void Log(object message)
-        {
-            Logger.Log($"[{GetType().FullName?.Replace(".", "]:[")}] - {message}");
-        }
+    private void Log(object message)
+    {
+        Logger.Log($"[{GetType().FullName?.Replace(".", "]:[")}] - {message}");
     }
 }

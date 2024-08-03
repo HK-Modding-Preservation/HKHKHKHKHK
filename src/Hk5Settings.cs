@@ -1,10 +1,9 @@
-﻿namespace HKHKHKHKHK
-{
-    public class HhhhhSaveSettings
-    {
-    }
+﻿namespace HKHKHKHKHK;
 
-    public class HhhhhGlobalSettings
-    {
-    }
+public class HhhhhSaveSettings
+{
+}
+
+public class HhhhhGlobalSettings
+{
 }

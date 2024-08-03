@@ -2,30 +2,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace HKHKHKHKHK.Utils
-{
-    public static class USceneUtil
-    {
-        public static GameObject FindRoot(this Scene scene, string name)
-        {
-            return scene.GetRootGameObjects().FirstOrDefault(go => go.name == name);
-        }
+namespace HKHKHKHKHK.Utils;
 
-        public static GameObject Find(this Scene scene, string name)
+public static class USceneUtil
+{
+    public static GameObject FindRoot(this Scene scene, string name)
+    {
+        return scene.GetRootGameObjects().FirstOrDefault(go => go.name == name);
+    }
+
+    public static GameObject Find(this Scene scene, string name)
+    {
+        foreach (var go in scene.GetRootGameObjects())
         {
-            foreach (var go in scene.GetRootGameObjects())
+            if (go.name == name)
             {
-                if (go.name == name)
-                {
-                    return go;
-                }
-                Transform ret = go.transform.Find(name);
-                if (ret)
-                {
-                    return ret.gameObject;
-                }
+                return go;
             }
-            return null;
+            Transform ret = go.transform.Find(name);
+            if (ret)
+            {
+                return ret.gameObject;
+            }
         }
+        return null;
     }
 }
